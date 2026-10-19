@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso - Electrónica Bolívar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="login-body">
+
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="logo-circle">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <div class="company-name">Electrónica Bolívar</div>
+                
+            </div>
+
+            <form id="loginForm">
+                <div class="input-group-login">
+                    <div class="icon-box"><i class="fa-regular fa-user"></i></div>
+                    <input type="text" id="username" placeholder="Usuario" required autocomplete="off">
+                </div>
+
+                <div class="input-group-login">
+                    <div class="icon-box"><i class="fa-solid fa-lock"></i></div>
+                    <input type="password" id="password" placeholder="Contraseña" required>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    INGRESAR <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                </button>
+
+                <p id="mensaje-error" class="error-msg"></p>
+            </form>
+        </div>
+        
+        <div class="login-footer-text">
+            © 2025 Electrónica Bolívar S.A.C. - Todos los derechos reservados
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

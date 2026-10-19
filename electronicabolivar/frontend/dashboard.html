@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Electrónica Bolívar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="brand">
+            <i class="fa-solid fa-bolt"></i> Electrónica Bolívar
+        </div>
+        
+        <div class="menu-label">Principal</div>
+        <ul class="menu">
+            <li><a href="#" onclick="cargarModulo('inicio')" class="active"><i class="fa-solid fa-chart-pie"></i> Dashboard</a></li>
+            <li><a href="#" onclick="cargarModulo('ventas')"><i class="fa-solid fa-cash-register"></i> Punto de Venta</a></li>
+        </ul>
+        
+        <div class="menu-label">Administración</div>
+        <ul class="menu">
+            <li><a href="#" onclick="cargarModulo('productos')"><i class="fa-solid fa-box"></i> Productos</a></li>
+            <li><a href="#" onclick="cargarModulo('inventario')"><i class="fa-solid fa-warehouse"></i> Inventario</a></li>
+            <li><a href="#" onclick="cargarModulo('reportes')"><i class="fa-solid fa-file-invoice-dollar"></i> Reportes</a></li>
+            <li><a href="#" onclick="cargarModulo('usuarios')"><i class="fa-solid fa-users-gear"></i> Gestión de Personal</a></li>
+        </ul>
+        
+        <div class="user-panel">
+            <div class="user-avatar"><i class="fa-solid fa-user"></i></div>
+            <div style="flex-grow:1; overflow:hidden;">
+                <div id="user-name" style="font-size:0.9rem; font-weight:bold; white-space:nowrap;">Cargando...</div>
+                <div style="font-size:0.7rem; color:#aaa">En línea</div>
+            </div>
+            <i class="fa-solid fa-right-from-bracket" style="cursor:pointer; color:#dc3545" onclick="cerrarSesion()" title="Salir"></i>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div class="page-title"><h2 id="page-title">Dashboard</h2></div>
+            <div class="date-display" id="fecha-header">Cargando fecha...</div>
+        </header>
+        
+        <div id="contenido-dinamico" class="work-area">
+            </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

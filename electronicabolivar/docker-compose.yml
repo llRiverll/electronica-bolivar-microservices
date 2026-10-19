@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+  # --- BASE DE DATOS CENTRALIZADA ---
+  mysqldb:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: electronica_db
+    ports:
+      - "3307:3306" # Puerto externo 3307 para no chocar con tu XAMPP
+    volumes:
+      - ./bd:/docker-entrypoint-initdb.d # Carga tu script init.sql automáticamente
+
+  # --- MICROSERVICIOS (BACKEND PYTHON) ---
+  
+  # 1. Usuarios (Login y Roles)
+  ms-usuarios:
+    build: ./ms-usuarios
+    ports:
+      - "5001:5000"
+    depends_on:
+      - mysqldb
+    environment:
+      - DB_HOST=mysqldb
+
+  # 2. Productos (Catálogo)
+  ms-productos:
+    build: ./ms-productos
+    ports:
+      - "5002:5000"
+    depends_on:
+      - mysqldb
+    environment:
+      - DB_HOST=mysqldb
+
+  # 3. Inventario (Stock)
+  ms-inventario:
+    build: ./ms-inventario
+    ports:
+      - "5003:5000"
+    depends_on:
+      - mysqldb
+    environment:
+      - DB_HOST=mysqldb
+
+  # 4. Pedidos (Ventas)
+  ms-pedidos:
+    build: ./ms-pedidos
+    ports:
+      - "5004:5000"
+    depends_on:
+      - mysqldb
+    environment:
+      - DB_HOST=mysqldb
+
+  # 5. Pagos (Registro)
+  ms-pagos:
+    build: ./ms-pagos
+    ports:
+      - "5005:5000"
+    depends_on:
+      - mysqldb
+    environment:
+      - DB_HOST=mysqldb
+
+  # 6. Reportes (Estadísticas)
+  ms-reportes:
+    build: ./ms-reportes
+    ports:
+      - "5006:5000"
+    depends_on:
+      - mysqldb
+    environment:
+      - DB_HOST=mysqldb
+
+  # --- FRONTEND (WEB) ---
+  frontend:
+    image: nginx:alpine
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+    ports:
+      - "8080:80" # Tu web se verá en localhost:8080
